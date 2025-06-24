@@ -40,7 +40,7 @@ const portfolioProjects = [
         year: "2024",
         title: "Pizza",
         results: [
-            {title: "Built a Next.JS web application"},
+            {title: "Build a Next.JS web application"},
             {title: "Implemented payment yukassa"},
             {title: "Created authorization oAuth"},
         ],

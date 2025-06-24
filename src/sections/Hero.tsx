@@ -155,7 +155,7 @@ export const Hero = () => {
                         I&apos;m a Frontend developer
                     </h1>
                     <p className='mt-4 text-center text-white/60 md:text-lg max-w-lg mx-auto'>
-                        I specialize in creating and optimizing high-load web applications. Let&apos;s discuss your next project.
+                        I specialize in creating and optimizing high-load web applications. Let&apos;s discuss your project.
                     </p>
                 </div>
                 <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
