@@ -1,7 +1,6 @@
 import React, {CSSProperties, PropsWithChildren} from 'react';
 import grainImage from "@/assets/images/grain.jpg";
 import {twMerge} from "tailwind-merge";
-import {Style} from "node:util";
 
 type Props = {
     className?: string

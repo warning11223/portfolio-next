@@ -118,6 +118,7 @@ export const Projects = () => {
                                     src={project.image}
                                     alt={project.title}
                                     className='mt-8 -mb-8 rounded-tl-xl rounded-tr-xl md:-mb-12 lg:mt-20 lg:absolute lg:h-full lg:max-w-none lg:w-auto'
+                                    sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 768px) calc(50vw - 16px), 400px"
                                 />
                             </div>
                         </Card>
