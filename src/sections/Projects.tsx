@@ -1,7 +1,6 @@
 import streamingService from "@/assets/images/streaming-service.png";
 import newsJpg from "@/assets/images/news.jpg";
 import pizzaPng from "@/assets/images/pizza.png";
-import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
 import Image from "next/image";
 import CheckIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
