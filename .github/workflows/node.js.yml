@@ -6,7 +6,6 @@ on:
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -14,10 +13,10 @@ jobs:
         node-version: [20.19.4]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Fix permissions before checkout
+        run: sudo chown -R runner:runner /home/runner/actions-runner/_work
 
-      - name: Fix file permissions
-        run: sudo chown -R runner:runner .
+      - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
