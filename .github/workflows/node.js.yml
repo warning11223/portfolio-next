@@ -24,13 +24,15 @@ jobs:
 
       - name: Deploy to Nginx
         run: |
-          # Копируем файлы (теперь без sudo)
-          rm -rf /var/www/html/_next
-          cp -R .next/static /var/www/html/_next
+          # Убедимся что папки существуют
+          mkdir -p /var/www/html/_next
+          
+          # Копируем с сохранением прав
+          cp -R .next/static /var/www/html/_next/
           cp -R public/* /var/www/html/
           
-          # Перезапускаем Nginx (с sudo но без пароля)
-          sudo systemctl restart nginx
+          # Перезапускаем Nginx через sudo (если настроили NOPASSWD)
+          sudo -n systemctl restart nginx
 
       - name: Verify deployment
         run: |
