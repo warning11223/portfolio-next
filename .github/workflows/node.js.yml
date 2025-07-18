@@ -1,27 +1,38 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: Deploy to Nginx
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
 
 jobs:
-  build:
-
+  deploy:
     runs-on: self-hosted
 
-    strategy:
-      matrix:
-        node-version: [20.19.4]
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to Nginx
+        run: |
+          # Копируем файлы (теперь без sudo)
+          rm -rf /var/www/html/_next
+          cp -R .next/static /var/www/html/_next
+          cp -R public/* /var/www/html/
+          
+          # Перезапускаем Nginx (с sudo но без пароля)
+          sudo systemctl restart nginx
+
+      - name: Verify deployment
+        run: |
+          ls -la /var/www/html
+          curl -I http://localhost
