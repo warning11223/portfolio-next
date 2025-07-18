@@ -1,43 +1,32 @@
-name: Deploy Next.js App
+name: Node.js CI
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  deploy:
+  build:
     runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [20.19.4]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fix permissions
-        run: sudo chown -R runner:runner .
-
-      - name: Setup Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20.19.4
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Next.js app
-        run: npm run build
+      - name: Build the project (if applicable)
+        run: npm run build --if-present
 
-      - name: Deploy to /var/www/app/portfolio-next
-        run: |
-          sudo rm -rf /var/www/app/portfolio-next
-          sudo mkdir -p /var/www/app/portfolio-next
-          sudo cp -r . /var/www/app/portfolio-next
-          sudo chown -R root:root /var/www/app/portfolio-next
-
-      - name: Restart app with PM2
-        run: |
-          sudo pm2 restart nextjs || sudo pm2 start npm --name "nextjs" -- start --prefix /var/www/app/portfolio-next
-          sudo pm2 save
-
-      - name: Clean up temp files
-        run: rm -rf /home/runner/actions-runner/_work/*
+      - name: Restart PM2 process
+        run: pm2 restart nextjs --update-env
