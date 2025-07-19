@@ -163,7 +163,7 @@ export const About = () => {
                         </Card>
                         <Card className='h-[320px] p-0 md:col-span-2'>
                             <Image
-                                className='h-full w-full object-cover object-left-top opacity-40'
+                                className='h-full w-full object-cover object-left-top opacity-30'
                                 src={mapImage.src}
                                 alt='map image'
                                 fill
