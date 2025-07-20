@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     authors: [{ name: "denis-frontend", url: siteUrl }],
     creator: "denis-frontend",
     metadataBase: new URL(siteUrl),
+    robots: {
+        follow: true,
+        index: true,
+    },
     openGraph: {
         title: "Frontend Web Development",
         description: "Discover projects and insights from a frontend developer passionate about building modern, fast, and accessible web apps.",
