@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         siteName: "Frontend Web Development",
         images: [
             {
-                url: "/og-image.jpg",
+                url: "/og.png",
                 width: 1200,
                 height: 630,
                 alt: "Frontend Developer Portfolio Preview",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Frontend Web Development",
         description: "Discover projects and insights from a frontend developer passionate about building modern, fast, and accessible web apps.",
-        images: ["/og-image.jpg"],
+        images: ["/og.png"],
     },
 };
 
