@@ -6,6 +6,7 @@ import {About} from "@/sections/About";
 import {Contact} from "@/sections/Contact";
 import {Footer} from "@/sections/Footer";
 import {Testimonials} from "@/sections/Testimonials";
+import CanvasCursor from "@/components/CanvasCursor";
 
 export default function Home() {
     return (
@@ -18,6 +19,7 @@ export default function Home() {
             <About />
             <Contact />
             <Footer />
+            <CanvasCursor />
         </div>
     );
 }
