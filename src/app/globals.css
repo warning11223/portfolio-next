@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+    html, body, * {
+        cursor: url('/cursor/cursor.cur'), auto !important;
+    }
+
+    html {
+        @apply scrollbar-custom;
+    }
+
     .nav-item {
         @apply px-4 py-1.5 rounded-full text-white/70 text-sm font-semibold hover:bg-white/10 hover:text-white transition duration-300;
     }
@@ -17,6 +25,23 @@
 }
 
 @layer utilities {
+    .scrollbar-thin {
+        scrollbar-width: thin;
+    }
+
+    .scrollbar-none {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .scrollbar-none::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-custom {
+        scrollbar-color:  #34d399 #1f2937;
+    }
+
     .container {
         @apply lg:max-w-5xl;
     }
