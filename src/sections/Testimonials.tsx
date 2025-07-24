@@ -38,10 +38,10 @@ const testimonials = [
 export const Testimonials = () => {
     return (
         <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+            transition={{ type: 'spring', stiffness: 100, damping: 10 }}
         >
             <div className='py-16 lg:py-24'>
                 <div className='container'>
