@@ -8,6 +8,7 @@ import Image from 'next/image'
 import grainImage from '@/assets/images/grain.jpg'
 import {HeroOrbit} from "@/components/HeroOrbit";
 import React from "react";
+import { motion } from 'framer-motion'
 
 export const Hero = () => {
 
@@ -135,46 +136,52 @@ export const Hero = () => {
                    <StarIcon className="size-28 text-emerald-300 " />
                </HeroOrbit>
            </div>
-            <div className="container">
-                <div className="flex flex-col items-center">
-                    <Image
-                        className="size-[100px]"
-                        src={memojiImage}
-                        alt="Memoji image"
-                    />
-                    <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4">
-                        <div className='bg-green-500 size-2.5 rounded-full relative'>
-                            <div className='absolute bg-green-500 inset-0 rounded-full animate-ping-large' />
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="container">
+                    <div className="flex flex-col items-center">
+                        <Image
+                            className="size-[100px]"
+                            src={memojiImage}
+                            alt="Memoji image"
+                        />
+                        <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4">
+                            <div className='bg-green-500 size-2.5 rounded-full relative'>
+                                <div className='absolute bg-green-500 inset-0 rounded-full animate-ping-large' />
+                            </div>
+                            <div className="text-sm font-medium">Available for new projects</div>
                         </div>
-                        <div className="text-sm font-medium">Available for new projects</div>
+                    </div>
+                    <div className='max-w-xl mx-auto'>
+                        <h1 className='font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide'>
+                            Hi, my name is Denis.<br/>
+                            I&apos;m a Frontend developer
+                        </h1>
+                        <p className='mt-4 text-center text-white/60 md:text-lg max-w-lg mx-auto'>
+                            I specialize in creating and optimizing high-load web applications. Let&apos;s discuss your project.
+                        </p>
+                    </div>
+                    <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
+                        <button
+                            className='inline-flex items-center gap-2 border border-white/15 px-6 rounded-xl h-12 z-10 hover:bg-gray-100 hover:text-gray-900 transition-all duration-300'
+                            onClick={(e) => handleClick(e, 'projects')}
+                        >
+                            <span className='font-semibold'>Explore My Work</span>
+                            <ArrowDown className="size-4"/>
+                        </button>
+                        <button
+                            className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 px-6 rounded-xl h-12 z-10 hover:bg-transparent hover:text-white transition-all duration-300'
+                            onClick={(e) => handleClick(e, 'contact')}
+                        >
+                            <span>👋</span>
+                            <span className='font-semibold'>Let&apos;s connect</span>
+                        </button>
                     </div>
                 </div>
-                <div className='max-w-xl mx-auto'>
-                    <h1 className='font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide'>
-                        Hi, my name Denis.<br/>
-                        I&apos;m a Frontend developer
-                    </h1>
-                    <p className='mt-4 text-center text-white/60 md:text-lg max-w-lg mx-auto'>
-                        I specialize in creating and optimizing high-load web applications. Let&apos;s discuss your project.
-                    </p>
-                </div>
-                <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
-                    <button
-                        className='inline-flex items-center gap-2 border border-white/15 px-6 rounded-xl h-12 z-10 hover:bg-gray-100 hover:text-gray-900 transition-all duration-300'
-                        onClick={(e) => handleClick(e, 'projects')}
-                    >
-                        <span className='font-semibold'>Explore My Work</span>
-                        <ArrowDown className="size-4"/>
-                    </button>
-                    <button
-                        className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 px-6 rounded-xl h-12 z-10 hover:bg-transparent hover:text-white transition-all duration-300'
-                        onClick={(e) => handleClick(e, 'contact')}
-                    >
-                        <span>👋</span>
-                        <span className='font-semibold'>Let&apos;s connect</span>
-                    </button>
-                </div>
-            </div>
+            </motion.div>
         </div>
     );
 };
