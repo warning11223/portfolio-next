@@ -157,31 +157,85 @@ export const Hero = () => {
                     </div>
                     <div className='max-w-xl mx-auto'>
                         <h1 className='font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide'>
-                            Hi, my name is Denis.<br/>
-                            I&apos;m a Frontend developer
+                            <AnimatedText />
                         </h1>
                         <p className='mt-4 text-center text-white/60 md:text-lg max-w-lg mx-auto'>
-                            I specialize in creating and optimizing high-load web applications. Let&apos;s discuss your project.
+                            <motion.span
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.7 }}
+                                className="inline-block"
+                            >
+                                I specialize in creating and optimizing high-load web applications. Let&apos;s discuss your project.
+                            </motion.span>
                         </p>
                     </div>
-                    <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
-                        <button
-                            className='inline-flex items-center gap-2 border border-white/15 px-6 rounded-xl h-12 z-10 hover:bg-gray-100 hover:text-gray-900 transition-all duration-300'
-                            onClick={(e) => handleClick(e, 'projects')}
-                        >
-                            <span className='font-semibold'>Explore My Work</span>
-                            <ArrowDown className="size-4"/>
-                        </button>
-                        <button
-                            className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 px-6 rounded-xl h-12 z-10 hover:bg-transparent hover:text-white transition-all duration-300'
-                            onClick={(e) => handleClick(e, 'contact')}
-                        >
-                            <span>👋</span>
-                            <span className='font-semibold'>Let&apos;s connect</span>
-                        </button>
-                    </div>
+                    <motion.span
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.9 }}
+                    >
+                        <div className='flex flex-col md:flex-row justify-center items-center mt-8 gap-4'>
+                            <button
+                                className='inline-flex items-center gap-2 border border-white/15 px-6 rounded-xl h-12 z-10 hover:bg-gray-100 hover:text-gray-900 transition-all duration-300'
+                                onClick={(e) => handleClick(e, 'projects')}
+                            >
+                                <span className='font-semibold'>Explore My Work</span>
+                                <ArrowDown className="size-4"/>
+                            </button>
+                            <button
+                                className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 px-6 rounded-xl h-12 z-10 hover:bg-transparent hover:text-white transition-all duration-300'
+                                onClick={(e) => handleClick(e, 'contact')}
+                            >
+                                <span>👋</span>
+                                <span className='font-semibold'>Let&apos;s connect</span>
+                            </button>
+                        </div>
+                    </motion.span>
                 </div>
             </motion.div>
         </div>
+    );
+};
+
+const AnimatedText = () => {
+    const textElements = [
+        {text: "Hi", delay: 0.4},
+        {text: ",", delay: 0.7, space: true},
+        {text: "my", delay: 0.4, space: true},
+        {text: "name", delay: 0.7, space: true},
+        {text: "is", delay: 0.4, space: true},
+        {text: "Denis", delay: 0.4},
+        {text: ".", delay: 0.7},
+        {text: "br"},
+        {text: "I", delay: 0.7},
+        {text: "'", delay: 0.4},
+        {text: "m", delay: 0.7, space: true},
+        {text: "a Frontend", delay: 0.4, space: true},
+        {text: "developer", delay: 0.7}
+    ];
+
+    return (
+        <>
+            {textElements.map((element, index) => {
+                if (element.text === "br") {
+                    return <br key={index}/>;
+                }
+
+                return (
+                    <span key={index}>
+                        <motion.span
+                            initial={{opacity: 0, y: 20}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{duration: 0.6, delay: element.delay}}
+                            className="inline-block"
+                        >
+                            {element.text}
+                        </motion.span>
+                        {element.space && ' '}
+                     </span>
+                );
+            })}
+        </>
     );
 };
